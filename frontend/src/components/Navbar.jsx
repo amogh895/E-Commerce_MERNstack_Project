@@ -19,7 +19,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/">
         <h1 className="text-2xl font-bold">
-          E-Commerce Store
+          Electronify
         </h1>
       </Link>
 
