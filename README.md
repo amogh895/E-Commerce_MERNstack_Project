@@ -59,7 +59,7 @@ Features
 
 
 
-Backend:
+FrontEnd:
 npm run dev
 
 ---
