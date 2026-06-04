@@ -44,7 +44,7 @@ const Cart = () => {
                   </h2>
 
                   <p className="text-gray-600">
-                    ${item.price}
+                    ₹{item.price}
                   </p>
                 </div>
 
@@ -65,7 +65,7 @@ const Cart = () => {
           <div className="text-right mt-6">
 
             <h2 className="text-xl font-semibold">
-              Total: ${totalPrice}
+              Total: ₹{totalPrice}
             </h2>
 
             <Link to="/checkout">

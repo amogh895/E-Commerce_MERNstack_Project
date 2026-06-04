@@ -9,7 +9,8 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   totalPrice: Number,
-  status: { type: String, default: "Placed" }
+  status: { type: String, default: "Placed" },
+  stockDeducted: { type: Boolean, default: false }
 }, { timestamps: true });
 
 export default mongoose.model("Order", orderSchema);
