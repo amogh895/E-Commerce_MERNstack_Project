@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { StoreContext } from "../context/StoreContext";
+import { API_URL } from "../config";
 
 const Product = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const Product = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/products/${id}`
+          `${API_URL}/api/products/${id}`
         );
         setProduct(data);
       } catch (error) {

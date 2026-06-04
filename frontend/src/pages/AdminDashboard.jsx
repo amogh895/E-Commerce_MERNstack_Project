@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 const AdminDashboard = () => {
   const { token, user } = useContext(StoreContext);
@@ -46,20 +47,20 @@ const AdminDashboard = () => {
         headers: { Authorization: token }
       };
 
-      const productsRes = await axios.get("http://localhost:5000/api/products");
+      const productsRes = await axios.get(`${API_URL}/api/products`);
       setProducts(productsRes.data);
 
-      const ordersRes = await axios.get("http://localhost:5000/api/orders", config);
+      const ordersRes = await axios.get(`${API_URL}/api/orders`, config);
       const sortedOrders = ordersRes.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setOrders(sortedOrders);
 
-      const driversRes = await axios.get("http://localhost:5000/api/drivers", config);
+      const driversRes = await axios.get(`${API_URL}/api/drivers`, config);
       setDrivers(driversRes.data);
 
-      const queriesRes = await axios.get("http://localhost:5000/api/queries", config);
+      const queriesRes = await axios.get(`${API_URL}/api/queries`, config);
       setQueries(queriesRes.data);
 
-      const customersRes = await axios.get("http://localhost:5000/api/auth/customers", config);
+      const customersRes = await axios.get(`${API_URL}/api/auth/customers`, config);
       setCustomers(customersRes.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -75,7 +76,7 @@ const AdminDashboard = () => {
       };
 
       await axios.post(
-        "http://localhost:5000/api/products",
+        `${API_URL}/api/products`,
         {
           name: newName,
           price: Number(newPrice),
@@ -108,7 +109,7 @@ const AdminDashboard = () => {
       const config = {
         headers: { Authorization: token }
       };
-      await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+      await axios.delete(`${API_URL}/api/products/${id}`, config);
       alert("Product deleted!");
       fetchData();
     } catch (error) {
@@ -132,7 +133,7 @@ const AdminDashboard = () => {
       };
 
       await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `${API_URL}/api/products/${id}`,
         {
           price: Number(editPrice),
           stock: Number(editStock)
@@ -157,7 +158,7 @@ const AdminDashboard = () => {
       };
 
       await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `${API_URL}/api/orders/${orderId}/status`,
         { status: newStatus },
         config
       );

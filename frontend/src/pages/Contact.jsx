@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { StoreContext } from "../context/StoreContext";
 
+import { API_URL } from "../config";
+
 const Contact = () => {
   const { user } = useContext(StoreContext);
   const [name, setName] = useState(user?.name || "");
@@ -18,7 +20,7 @@ const Contact = () => {
     setSubmitting(true);
 
     try {
-      await axios.post("http://localhost:5000/api/queries", {
+      await axios.post(`${API_URL}/api/queries`, {
         name,
         email,
         message

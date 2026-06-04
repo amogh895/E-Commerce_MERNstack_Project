@@ -5,6 +5,8 @@ import ProductCard from "../components/ProductCard";
 import { StoreContext } from "../context/StoreContext";
 import { useLocation } from "react-router-dom";
 
+import { API_URL } from "../config";
+
 const Collection = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
@@ -21,7 +23,7 @@ const Collection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(`${API_URL}/api/products`);
         setProducts(res.data);
       } catch (error) {
         console.error("Error fetching products:", error);

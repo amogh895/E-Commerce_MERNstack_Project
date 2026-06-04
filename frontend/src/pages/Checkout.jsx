@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const Checkout = () => {
   const { cartItems, clearCart, token, user } = useContext(StoreContext);
@@ -49,7 +50,7 @@ const Checkout = () => {
       };
 
       await axios.post(
-        "http://localhost:5000/api/orders",
+        `${API_URL}/api/orders`,
         {
           products: productsData,
           totalPrice

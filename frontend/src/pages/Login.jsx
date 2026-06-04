@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -23,7 +24,7 @@ const Login = () => {
     try {
       if (isSignUp) {
         // Register user
-        const res = await axios.post("http://localhost:5000/api/auth/register", {
+        const res = await axios.post(`${API_URL}/api/auth/register`, {
           name,
           email,
           password,
@@ -38,7 +39,7 @@ const Login = () => {
         navigate("/");
       } else {
         // Login user
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
           role

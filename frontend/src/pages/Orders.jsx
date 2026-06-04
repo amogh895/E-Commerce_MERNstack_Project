@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 const Orders = () => {
   const { token, user } = useContext(StoreContext);
@@ -22,7 +23,7 @@ const Orders = () => {
             Authorization: token
           }
         };
-        const res = await axios.get("http://localhost:5000/api/orders", config);
+        const res = await axios.get(`${API_URL}/api/orders`, config);
         // Sort orders so the newest are first
         const sortedOrders = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setOrders(sortedOrders);
