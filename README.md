@@ -55,28 +55,9 @@ Features
 
 ---
 
- Installation & Setup
+ 
 
-### 1. Clone the repository
 
-git clone https://github.com/amogh895/E-Commerce_MERNstack_Project.git
-
-### 2. Install dependencies
-
-Frontend:
-cd frontend
-npm install
-
-Backend:
-cd backend
-npm install
-
----
-
-### 3. Run the project
-
-Frontend:
-npm run dev
 
 Backend:
 npm run dev
