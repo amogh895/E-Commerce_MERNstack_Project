@@ -6,28 +6,106 @@ const router = express.Router();
 
 router.get("/", auth, async (req, res) => {
   try {
-    if (req.userRole !== "WarehouseAdmin") {
-      return res.status(403).json({ message: "Access denied. Admins only." });
-    }
-    const drivers = await Driver.find({});
+    const drivers = await Driver.find();
     res.json(drivers);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({
+      message: error.message,
+    });
   }
 });
 
-// Allow admin to add/modify drivers directly as well
 router.post("/", auth, async (req, res) => {
   try {
     if (req.userRole !== "WarehouseAdmin") {
-      return res.status(403).json({ message: "Access denied. Admins only." });
+      return res.status(403).json({
+        message: "Access denied. Admins only.",
+      });
     }
+
     const { name, phone, status } = req.body;
-    const newDriver = await Driver.create({ name, phone, status });
+
+    const newDriver = await Driver.create({
+      name,
+      phone,
+      status: status || "Available",
+    });
+
     res.status(201).json(newDriver);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({
+      message: error.message,
+    });
   }
 });
 
-export default router;
+router.put("/:id", auth, async (req, res) => {
+  try {
+    if (req.userRole !== "WarehouseAdmin") {
+      return res.status(403).json({
+        message: "Access denied. Admins only.",
+      });
+    }
+
+    const { name, phone, status } = req.body;
+
+    const updatedDriver = await Driver.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        phone,
+        status,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedDriver) {
+      return res.status(404).json({
+        message: "Driver not found",
+      });
+    }
+
+    res.json(updatedDriver);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    if (req.userRole !== "WarehouseAdmin") {
+      return res.status(403).json({
+        message: "Access denied. Admins only.",
+      });
+    }
+
+    const deletedDriver = await Driver.findByIdAndDelete(
+      req.params.id
+    );
+
+    if (!deletedDriver) {
+      return res.status(404).json({
+        message: "Driver not found",
+      });
+    }
+
+    res.json({
+      message: "Driver removed successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
+
+ export default router;

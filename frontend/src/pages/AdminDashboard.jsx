@@ -23,6 +23,12 @@ const AdminDashboard = () => {
   const [newImage, setNewImage] = useState("");
   const [newStock, setNewStock] = useState(10);
 
+  //States for driver status
+  const [driverName, setDriverName] = useState("");
+  const [driverPhone, setDriverPhone] = useState("");
+  const [driverStatus, setDriverStatus] =
+  useState("Available");
+
   // States for updating pricing/stock inline
   const [editingId, setEditingId] = useState(null);
   const [editPrice, setEditPrice] = useState("");
@@ -170,6 +176,95 @@ const AdminDashboard = () => {
       alert("Failed to update order status.");
     }
   };
+
+  const handleCreateDriver = async (e) => {
+  e.preventDefault();
+
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    await axios.post(
+      `${API_URL}/api/drivers`,
+      {
+        name: driverName,
+        phone: driverPhone,
+        status: driverStatus,
+      },
+      config
+    );
+
+    alert("Driver added successfully!");
+
+    setDriverName("");
+    setDriverPhone("");
+    setDriverStatus("Available");
+
+    fetchData();
+  } catch (error) {
+    console.error(error);
+    alert("Failed to add driver.");
+  }
+};
+
+const handleDriverStatusChange = async (
+  driverId,
+  newStatus
+) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    await axios.put(
+      `${API_URL}/api/drivers/${driverId}`,
+      {
+        status: newStatus,
+      },
+      config
+    );
+
+    fetchData();
+  } catch (error) {
+    console.error(error);
+    alert("Failed to update driver.");
+  }
+};
+
+const handleDeleteDriver = async (
+  driverId
+) => {
+  const confirmDelete =
+    window.confirm(
+      "Are you sure you want to delete this driver?"
+    );
+
+  if (!confirmDelete) return;
+
+  try {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    await axios.delete(
+      `${API_URL}/api/drivers/${driverId}`,
+      config
+    );
+
+    alert("Driver deleted!");
+    fetchData();
+  } catch (error) {
+    console.error(error);
+    alert("Failed to delete driver.");
+  }
+};
 
   // Filter orders for selected customer
   const getCustomerOrders = (customerId) => {
@@ -551,36 +646,130 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Tab: Drivers Management */}
-      {activeTab === "drivers" && (
-        <div className="space-y-6">
-          <h2 className="text-xl font-bold text-gray-700">Available Delivery Drivers</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {drivers.map((driver) => (
-              <div key={driver._id} className="bg-white border p-4 rounded-xl shadow-sm flex flex-col justify-between">
-                <div>
-                  <h4 className="font-bold text-gray-800 text-lg">{driver.name}</h4>
-                  <p className="text-sm text-gray-500 mb-3">{driver.phone}</p>
-                </div>
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs font-bold text-gray-500">STATUS</span>
-                  <span
-                    className={`px-2.5 py-0.5 rounded text-xs font-bold ${
-                      driver.status === "Available"
-                        ? "bg-green-100 text-green-800"
-                        : driver.status === "On Delivery"
-                        ? "bg-yellow-100 text-yellow-800"
-                        : "bg-gray-100 text-gray-800"
-                    }`}
-                  >
-                    {driver.status}
-                  </span>
-                </div>
-              </div>
-            ))}
+{/* Tab: Drivers Management */}
+{activeTab === "drivers" && (
+  <div className="grid lg:grid-cols-3 gap-6">
+
+    {/* Add Driver Form */}
+    <div className="bg-gray-50 p-6 rounded-xl border h-fit shadow-sm">
+      <h3 className="text-lg font-bold mb-4 text-gray-800">
+        Add Driver
+      </h3>
+
+      <form
+        onSubmit={handleCreateDriver}
+        className="space-y-3"
+      >
+        <input
+          type="text"
+          placeholder="Driver Name"
+          value={driverName}
+          onChange={(e) =>
+            setDriverName(e.target.value)
+          }
+          required
+          className="border p-2 rounded text-sm bg-white w-full"
+        />
+
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={driverPhone}
+          onChange={(e) =>
+            setDriverPhone(e.target.value)
+          }
+          required
+          className="border p-2 rounded text-sm bg-white w-full"
+        />
+
+        <select
+          value={driverStatus}
+          onChange={(e) =>
+            setDriverStatus(e.target.value)
+          }
+          className="border p-2 rounded text-sm bg-white w-full"
+        >
+          <option value="Available">
+            Available
+          </option>
+          <option value="On Delivery">
+            On Delivery
+          </option>
+          <option value="Offline">
+            Offline
+          </option>
+        </select>
+
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded text-sm w-full transition"
+        >
+          Add Driver
+        </button>
+      </form>
+    </div>
+
+    {/* Driver List */}
+    <div className="lg:col-span-2">
+      <h2 className="text-xl font-bold text-gray-700 mb-4">
+       List of all Delivery Drivers
+      </h2>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        {drivers.map((driver) => (
+          <div
+            key={driver._id}
+            className="bg-white border p-4 rounded-xl shadow-sm"
+          >
+            <h4 className="font-bold text-gray-800 text-lg">
+              {driver.name}
+            </h4>
+
+            <p className="text-sm text-gray-500 mb-4">
+              {driver.phone}
+            </p>
+
+            <div className="space-y-3">
+              <select
+                value={driver.status}
+                onChange={(e) =>
+                  handleDriverStatusChange(
+                    driver._id,
+                    e.target.value
+                  )
+                }
+                className="border p-2 rounded-lg text-sm bg-gray-50 w-full"
+              >
+                <option value="Available">
+                  Available
+                </option>
+
+                <option value="On Delivery">
+                  On Delivery
+                </option>
+
+                <option value="Offline">
+                  Offline
+                </option>
+              </select>
+
+              <button
+                onClick={() =>
+                  handleDeleteDriver(
+                    driver._id
+                  )
+                }
+                className="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-lg w-full transition"
+              >
+                Delete Driver
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+    </div>
+  </div>
+)}
 
       {/* Tab: Customer Queries */}
       {activeTab === "queries" && (

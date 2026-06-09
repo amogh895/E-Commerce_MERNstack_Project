@@ -7,6 +7,8 @@ import authRoutes from "./routes/authRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import driverRoutes from "./routes/driverRoutes.js";
 import queryRoutes from "./routes/queryRoutes.js";
+import chatbotRoutes from "./routes/chatbotRoutes.js";
+import { initNLP } from "./services/nlpService.js";
 
 dotenv.config();
 
@@ -15,6 +17,9 @@ const app = express();
 // connect database
 connectDB();
 
+// Initialize NLP manager (training if necessary)
+initNLP();
+
 app.use(cors());
 app.use(express.json());
 app.use("/api/products", productRoutes);
@@ -22,6 +27,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/drivers", driverRoutes);
 app.use("/api/queries", queryRoutes);
+app.use("/api/chat", chatbotRoutes);
 
 // test route
 app.get("/", (req, res) => {

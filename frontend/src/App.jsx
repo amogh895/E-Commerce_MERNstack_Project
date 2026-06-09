@@ -11,6 +11,7 @@ import Orders from "./pages/Orders";
 import AdminDashboard from "./pages/AdminDashboard";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
       </Routes>
+
+      <Chatbot />
     </div>
   );
 }
