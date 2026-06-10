@@ -50,6 +50,33 @@ MongoDB & Mongoose	Database management and schema modeling
 JWT Authentication	Secure authentication and authorization
 Node-NLP	AI chatbot processing and intent recognition
 
+## 📸 Project Screenshots
+
+###  Home Page
+<img width="100%" alt="Home Page" src="./assets/home_page.png" />
+
+
+### Products
+<img width="100%" alt="Product Page" src="./assests\products_page1.png" />
+
+
+
+### AI Support Chatbot
+<img width="100%" alt="Product Page" src="./assests\AI_AssistanceChatbot.png" />
+
+
+### Warehouse Admin Dashboard
+<img width="100%" alt="Product Page" src="./assests\Admin_Panel_1.png" />
+
+<img width="100%" alt="Product Page" src="./assests\Admin_Panel_2.png" />
+
+
+
+
+
+
+
+
 ## Project Structure
 E-Commerce_MERNstack_Project/
 │
@@ -80,16 +107,6 @@ WarehouseAdmin – Manage inventory, drivers, customer data, and support queries
 ### 🔑 Warehouse Admin Access
 
 To register as a WarehouseAdmin, use the following admin pass key:   admin123
-
-## Getting Started
-1. Clone the Repository
-git clone https://github.com/amogh895/E-Commerce_MERNstack_Project.git
-cd E-Commerce_MERNstack_Project
-
-2. Setup Backend
-cd backend
-npm install
-npm run dev
 
 ## Getting Started
 
