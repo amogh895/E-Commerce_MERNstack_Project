@@ -61,14 +61,14 @@ Node-NLP	AI chatbot processing and intent recognition
 
 
 
-### AI Support Chatbot
-<img width="100%" alt="Product Page" src="./assests\AI_AssistanceChatbot.png" />
+### AI Customer Support Chatbot
+<img width="100%" alt="AI Customer Support ChatBot Frame" src="./assests\AI_AssistanceChatbot.png" />
 
 
 ### Warehouse Admin Dashboard
-<img width="100%" alt="Product Page" src="./assests\Admin_Panel_1.png" />
+<img width="100%" alt="Admin Dashboard" src="./assests\Admin_Panel_1.png" />
 
-<img width="100%" alt="Product Page" src="./assests\Admin_Panel_2.png" />
+<img width="100%" alt="Total Product Page" src="./assests\Admin_Panel_2.png" />
 
 
 
