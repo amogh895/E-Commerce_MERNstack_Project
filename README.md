@@ -1,66 +1,114 @@
+# E-Commerce Hub (MERN Stack with AI Support & Driver Management)
 
-#  E-Commerce Website (MERN Stack)
+A full-stack E-Commerce web application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). This project is designed to provide a smooth shopping experience for customers while also offering a dedicated Warehouse Admin Dashboard for managing products, delivery operations, and customer support.
 
-A complete e-commerce web application created with the MERN stack. Users can browse products, add items to their cart, log in, and place orders.
+To enhance user experience, the platform also includes an AI-powered NLP chatbot that helps users by understanding and responding to common customer queries in real time.
 
----
+## Features
 
-Features
+### Customer Side Features
+Browse products through a dynamic product catalog with real-time stock updates.
+Search and filter products for a faster shopping experience.
+Add, update, or remove products from the shopping cart with automatic price calculations.
+Place orders easily while inventory updates automatically in the backend.
+View order-related activities seamlessly.
 
-* Product listing (Home & Shop)
-*  Search and sorting
-*  Add to cart / Remove from cart
-*  Email-based authentication
-*  Order placement Log
-*  Inventory management (stock update)
+### Warehouse Admin Dashboard (WarehouseAdmin Role)
+Manage product inventory and update stock details.
+Handle driver management operations with full CRUD functionality to track delivery personnel status (Available, Busy, etc.).
+Access customer details through a secure registry.
+Manage customer support requests and queries efficiently.
 
----
+### AI-Powered Support Chatbot
+The project integrates an intelligent chatbot built using Node-NLP to provide automated customer assistance.
 
- Tech Stack
+The chatbot can:
+
+1. Understand customer messages using Natural Language Processing (NLP).
+2. Identify common intents such as:
+refund
+payment_issue
+login_issue
+pricing
+technical_problem
+
+3. Generate dynamic responses stored in MongoDB based on confidence scores.
+Retrain the NLP model whenever required through backend APIs.
+
+## Tech Stack
 
 ### Frontend
-
-* React (Vite)
-* Tailwind CSS
-* React Router
-* Axios
-* Context API
+React (Vite)	Fast and optimized frontend development
+React Router DOM	Client-side navigation
+Tailwind CSS	Responsive and modern UI styling
+Axios	API requests handling
+Context API	Global state management
 
 ### Backend
+Node.js & Express.js	Backend API and server development
+MongoDB & Mongoose	Database management and schema modeling
+JWT Authentication	Secure authentication and authorization
+Node-NLP	AI chatbot processing and intent recognition
 
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* JWT Authentication
-
----
-
-## Snapshots
-
-###  Home Page
-
-![Home](./assets/home.png)
-
-###  Shop Page
-
-![Shop](./assets/shop.png)
-
-###  Cart Page
-
-![Cart](./assets/cart.png)
-
-###  Login Page
-
-![Login](./assets/login.png)
-
----
-
- 
+## Project Structure
+E-Commerce_MERNstack_Project/
+│
+├── backend/
+│   ├── config/          # Database configuration
+│   ├── controllers/     # Business logic and route handlers
+│   ├── data/            # NLP training data
+│   ├── middleware/      # JWT authentication & authorization
+│   ├── models/          # MongoDB schemas
+│   ├── routes/          # API endpoints
+│   ├── services/        # Chatbot logic and NLP services
+│   └── server.js        # Backend entry point
+│
+└── frontend/
+    ├── public/          # Static assets
+    ├── src/             # Components, pages, contexts
+    └── package.json
 
 
+## 🔐 Authentication & Authorization
 
-FrontEnd:
+The application uses JWT (JSON Web Tokens) for secure authentication and role-based authorization.
+
+Roles
+Customer – Browse products, place orders, and access chatbot support.
+WarehouseAdmin – Manage inventory, drivers, customer data, and support queries.
+
+### 🔑 Warehouse Admin Access
+
+To register as a WarehouseAdmin, use the following admin pass key:   admin123
+
+## Getting Started
+1. Clone the Repository
+git clone https://github.com/amogh895/E-Commerce_MERNstack_Project.git
+cd E-Commerce_MERNstack_Project
+
+2. Setup Backend
+cd backend
+npm install
 npm run dev
 
----
+## Getting Started
+
+1. Clone the Repository
+git clone https://github.com/amogh895/E-Commerce_MERNstack_Project.git
+cd E-Commerce_MERNstack_Project
+
+2. Setup Backend
+cd backend
+npm install
+npm run dev
+
+The NLP model initializes automatically during backend startup.
+
+3. Setup Frontend
+cd frontend
+npm install
+npm run dev
+
+
+
 
