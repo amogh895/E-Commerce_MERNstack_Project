@@ -17,9 +17,12 @@ const app = express();
 // connect database
 connectDB();
 
+<<<<<<< HEAD
 // Initialize NLP manager (training if necessary)
 initNLP();
 
+=======
+>>>>>>> 776c22cd1ee3508fd2b20b1b3f0a726c018c929c
 app.use(cors({
   origin: [
     "http://localhost:5173",
