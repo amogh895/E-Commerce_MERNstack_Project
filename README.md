@@ -53,7 +53,8 @@ Node-NLP	AI chatbot processing and intent recognition
 ## 📸 Project Screenshots
 
 ###  Home Page
-![Home Page](./assets/home.png)
+![Home Page](./assets/home_page.png)
+
 
 
 ### Products
