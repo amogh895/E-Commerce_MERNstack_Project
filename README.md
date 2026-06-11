@@ -1,6 +1,6 @@
-# E-Commerce Hub (MERN Stack with AI Support & Driver Management)
+# Electronify (E-commerce website with AI Assistance Bot for customer support)
 
-Electronify,a full-stack E-Commerce web application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). This project is designed to provide a smooth shopping experience for customers while also offering a dedicated Warehouse Admin Dashboard for managing products, delivery operations, and customer support.
+Electronify,a full-stack E-Commerce electronic product based web application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). This project is designed to provide a smooth shopping experience for customers while also offering a dedicated Warehouse Admin Dashboard for managing products, delivery operations, and customer support.
 
 To enhance user experience, the platform also includes an AI-powered NLP chatbot that helps users by understanding and responding to common customer queries in real time.
 
@@ -61,9 +61,6 @@ Node-NLP	AI chatbot processing and intent recognition
 ![Products](./assests/products_page1)
 
 
-
-
-
 ### AI Customer Support Chatbot
 <img width="100%" alt="AI Customer Support ChatBot Frame" src="./assests\AI_AssistanceChatbot.png" />
 
@@ -71,13 +68,8 @@ Node-NLP	AI chatbot processing and intent recognition
 ### Warehouse Admin Dashboard
 <img width="100%" alt="Admin Dashboard" src="./assests\Admin_Panel_1.png" />
 
+
 <img width="100%" alt="Total Product Page" src="./assests\Admin_Panel_2.png" />
-
-
-
-
-
-
 
 
 ## Project Structure
@@ -99,7 +91,7 @@ E-Commerce_MERNstack_Project/
     └── package.json
 
 
-## 🔐 Authentication & Authorization
+##  Authentication & Authorization
 
 The application uses JWT (JSON Web Tokens) for secure authentication and role-based authorization.
 
@@ -107,27 +99,11 @@ Roles
 Customer – Browse products, place orders, and access chatbot support.
 WarehouseAdmin – Manage inventory, drivers, customer data, and support queries.
 
-### 🔑 Warehouse Admin Access
+###  Warehouse Admin Access
 
 To register as a WarehouseAdmin, use the following admin pass key:   admin123
 
-## Getting Started
 
-1. Clone the Repository
-git clone https://github.com/amogh895/E-Commerce_MERNstack_Project.git
-cd E-Commerce_MERNstack_Project
-
-2. Setup Backend
-cd backend
-npm install
-npm run dev
-
-The NLP model initializes automatically during backend startup.
-
-3. Setup Frontend
-cd frontend
-npm install
-npm run dev
 
 
 
