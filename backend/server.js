@@ -20,7 +20,14 @@ connectDB();
 // Initialize NLP manager (training if necessary)
 initNLP();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://e-commerce-mer-nstack-project.vercel.app"
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
