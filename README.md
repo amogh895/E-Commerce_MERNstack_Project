@@ -4,6 +4,7 @@ Electronify,a full-stack E-Commerce electronic product based web application dev
 
 To enhance user experience, the platform also includes an AI-powered NLP chatbot that helps users by understanding and responding to common customer queries in real time.
 
+
 ## Features
 
 ### Customer Side Features
@@ -102,6 +103,11 @@ WarehouseAdmin – Manage inventory, drivers, customer data, and support queries
 ###  Warehouse Admin Access
 
 To register as a WarehouseAdmin, use the following admin pass key:   admin123
+
+
+##  Live Demo
+
+🔗 [Visit Electronify Website](https://e-commerce-mer-nstack-project.vercel.app)
 
 
 
