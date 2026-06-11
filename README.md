@@ -1,6 +1,6 @@
 # E-Commerce Hub (MERN Stack with AI Support & Driver Management)
 
-A full-stack E-Commerce web application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). This project is designed to provide a smooth shopping experience for customers while also offering a dedicated Warehouse Admin Dashboard for managing products, delivery operations, and customer support.
+Electronify,a full-stack E-Commerce web application developed using the MERN Stack (MongoDB, Express.js, React.js, and Node.js). This project is designed to provide a smooth shopping experience for customers while also offering a dedicated Warehouse Admin Dashboard for managing products, delivery operations, and customer support.
 
 To enhance user experience, the platform also includes an AI-powered NLP chatbot that helps users by understanding and responding to common customer queries in real time.
 
