@@ -18,7 +18,7 @@ connectDB();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-project.vercel.app"
+    "https://e-commerce-mer-nstack-project.vercel.app"
   ],
   credentials: true
 }));
