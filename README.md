@@ -59,7 +59,7 @@ Node-NLP	AI chatbot processing and intent recognition
 
 
 ### Products
-![Products](./assests/products_page1)
+![Products](./assests/products_page1.png)
 
 
 ### AI Customer Support Chatbot
