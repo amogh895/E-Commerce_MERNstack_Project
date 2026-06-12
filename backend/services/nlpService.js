@@ -7,15 +7,10 @@ const { NlpManager } = pkg;
 const MODEL_FILE = path.resolve("./model.nlp");
 const manager = new NlpManager({ languages: ["en"], forceNER: true });
 
-// Check if model file exists and load it, otherwise train it
+// Train NLP model on startup to ensure training data updates are always loaded
 export const initNLP = async () => {
-  if (fs.existsSync(MODEL_FILE)) {
-    console.log("Loading existing NLP model...");
-    await manager.load(MODEL_FILE);
-  } else {
-    console.log("No NLP model found. Training a new model...");
-    await trainNLP();
-  }
+  console.log("Training/re-training NLP model on startup...");
+  await trainNLP();
 };
 
 export const trainNLP = async () => {

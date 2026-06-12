@@ -17,10 +17,8 @@ const app = express();
 // connect database
 connectDB();
 
-
 // Initialize NLP manager (training if necessary)
 initNLP();
-
 
 
 app.use(cors({

@@ -8,7 +8,7 @@ export const getResponseForIntent = async (intentAnalysis) => {
   // If intent is low confidence or not detected, return fallback
   if (!intent || score < CONFIDENCE_THRESHOLD) {
     return {
-      reply: "Sorry, I couldn't understand your request. Please try asking about one of these topics:\n• Refund\n• Payment Issue\n• Login Problem\n• Contact Support\n• Technical Problem\n• Pricing",
+      reply: "i cannot understand your question",
       intent: "fallback",
       confidence: score,
       suggestions: [

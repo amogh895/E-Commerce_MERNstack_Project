@@ -37,7 +37,7 @@ const initialIntents = [
   },
   {
     intent: "service_information",
-    response: "Electronify is a leading MERN-stack e-commerce marketplace specializing in premium electronic devices like laptops, audio devices, mobiles, and accessories.",
+    response: "Electronify is a leading MERN-stack e-commerce marketplace specializing in premium electronic devices. Orders are processed within 24 hours, and delivery takes 3-5 business days depending on your location.",
     category: "General Info"
   },
   {

@@ -79,7 +79,12 @@ export const trainingData = {
     "working days",
     "where are you located",
     "is delivery fast",
-    "track delivery"
+    "track delivery",
+    "How much time it will take for order to be deliverd in my location",
+    "how much time it will take for order to be delivered",
+    "delivery duration",
+    "shipping time",
+    "how long to deliver"
   ],
   account_issue: [
     "delete my account",

@@ -21,9 +21,11 @@ const Chatbot = () => {
 
   const messagesEndRef = useRef(null);
 
-  // Load chat history from localStorage on mount
+  // Load chat history from localStorage on mount and when user changes
   useEffect(() => {
-    const savedMessages = localStorage.getItem("electronify_chat_history");
+    if (!user) return;
+    const key = `electronify_chat_history_${user._id || user.id || user.email || "guest"}`;
+    const savedMessages = localStorage.getItem(key);
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
     } else {
@@ -35,17 +37,17 @@ const Chatbot = () => {
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages([initialMessage]);
-      localStorage.setItem("electronify_chat_history", JSON.stringify([initialMessage]));
+      localStorage.setItem(key, JSON.stringify([initialMessage]));
     }
-  }, []);
+  }, [user]);
 
   // Save messages to localStorage whenever they change
   useEffect(() => {
-    if (messages.length > 0) {
-      localStorage.setItem("electronify_chat_history", JSON.stringify(messages));
-    }
+    if (!user || messages.length === 0) return;
+    const key = `electronify_chat_history_${user._id || user.id || user.email || "guest"}`;
+    localStorage.setItem(key, JSON.stringify(messages));
     scrollToBottom();
-  }, [messages]);
+  }, [messages, user]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -89,7 +91,7 @@ const Chatbot = () => {
     } catch (error) {
       const errorMsg = {
         id: `bot-err-${Date.now()}`,
-        text: "Sorry, I am having trouble connecting to the support server. Please make sure the backend server is running and try again.",
+        text: "Sorry, I am having trouble connecting to the support server",
         sender: "bot",
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
@@ -107,6 +109,8 @@ const Chatbot = () => {
   };
 
   const clearHistory = () => {
+    if (!user) return;
+    const key = `electronify_chat_history_${user._id || user.id || user.email || "guest"}`;
     const initialMessage = {
       id: "welcome",
       text: "Chat history cleared. How can I help you today?",
@@ -115,7 +119,7 @@ const Chatbot = () => {
     };
     setMessages([initialMessage]);
     setSuggestions(DEFAULT_SUGGESTIONS);
-    localStorage.setItem("electronify_chat_history", JSON.stringify([initialMessage]));
+    localStorage.setItem(key, JSON.stringify([initialMessage]));
   };
 
   // Only render if a user session is active (logged in / signed up)
