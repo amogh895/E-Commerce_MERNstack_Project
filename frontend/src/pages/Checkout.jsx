@@ -4,6 +4,7 @@ import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../config";
+import OrderSuccessModal from "../components/OrderSuccessModal";
 
 const Checkout = () => {
   const { cartItems, clearCart, token, user } = useContext(StoreContext);
@@ -15,6 +16,8 @@ const Checkout = () => {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [placedOrderDetails, setPlacedOrderDetails] = useState(null);
 
   const navigate = useNavigate();
 
@@ -58,9 +61,17 @@ const Checkout = () => {
         config
       );
 
+      setPlacedOrderDetails({
+        name,
+        email,
+        address,
+        city,
+        postalCode,
+        phone,
+        totalPrice
+      });
       clearCart();
-      alert("Order Placed Successfully via Cash on Delivery!");
-      navigate("/orders");
+      setShowSuccessModal(true);
     } catch (error) {
       console.error(error);
       setErrorMsg(error.response?.data?.msg || "Failed to place order.");
@@ -185,6 +196,12 @@ const Checkout = () => {
           <span>₹{totalPrice}</span>
         </div>
       </div>
+
+      <OrderSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        orderDetails={placedOrderDetails}
+      />
     </div>
   );
 };
